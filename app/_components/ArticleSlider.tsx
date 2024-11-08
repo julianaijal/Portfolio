@@ -4,6 +4,7 @@ import { FC } from "react";
 import ArticleSliderEntry from "./ArticleSliderEntry";
 
 const ArticleSlider: FC<IArticles> = ({ articles }) => {
+  
   return (
     <section className={styles.ArticleSlider}>
       <div className={styles.ArticleSliderCta}>

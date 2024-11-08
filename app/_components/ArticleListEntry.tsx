@@ -5,6 +5,8 @@ import { IArticle } from './_interfaces/interfaces';
 import { FC } from 'react';
 
 const ArticleListEntry: FC<IArticle> = ({ title, url, symbol }) => {
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
   return (
     <li className={styles.ArticleListItem}>
       {symbol?.url && (
@@ -28,6 +30,9 @@ const ArticleListEntry: FC<IArticle> = ({ title, url, symbol }) => {
           Read more
         </Link>
       </div>
+      <Link href={`/articles/${slug}`} passHref>
+        <button className={styles.ArticleListItemButton}>go</button>
+      </Link>
     </li>
   );
 };
