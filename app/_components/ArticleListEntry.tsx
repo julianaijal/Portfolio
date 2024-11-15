@@ -5,6 +5,7 @@ import { IArticle } from './_interfaces/interfaces';
 import { FC } from 'react';
 
 const ArticleListEntry: FC<IArticle> = ({ title, url, symbol }) => {
+  // to do 1: fetch slugs from hygraph entries from parent, deconstruct above (see next comment)
   const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   return (
@@ -30,6 +31,7 @@ const ArticleListEntry: FC<IArticle> = ({ title, url, symbol }) => {
           Read more
         </Link>
       </div>
+      {/* to do 2: and pass here */}
       <Link href={`/articles/${slug}`} passHref>
         <button className={styles.ArticleListItemButton}>go</button>
       </Link>

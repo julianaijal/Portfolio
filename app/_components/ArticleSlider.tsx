@@ -4,7 +4,7 @@ import { FC } from "react";
 import ArticleSliderEntry from "./ArticleSliderEntry";
 
 const ArticleSlider: FC<IArticles> = ({ articles }) => {
-  
+  // to do 1: fetch slugs from hygraph entries from parent, deconstruct above (see next comment)
   return (
     <section className={styles.ArticleSlider}>
       <div className={styles.ArticleSliderCta}>
