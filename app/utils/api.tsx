@@ -1,5 +1,5 @@
+const api = `https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/${process.env.HYGRAPH_API_KEY}/master`;
 const fetchPosts = async () => {
-  const api = `https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/${process.env.HYGRAPH_API_KEY}/master`;
   try {
     const response = await fetch(api, {
       method: "POST",
@@ -44,7 +44,6 @@ const fetchPosts = async () => {
 };
 
 const fetchArticles = async () => {
-  const api = `https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/${process.env.HYGRAPH_API_KEY}/master`;
   try {
     const response = await fetch(api, {
       method: "POST",
@@ -89,6 +88,58 @@ const fetchArticles = async () => {
   }
 };
 
-const apiFunctions = { fetchPosts, fetchArticles };
+const fetchArticleBySlug = async (slug:string) => {  
+  try {
+    const response = await fetch(api, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: `{
+          articles(where: { slug: "${slug}" }) {
+            id
+            title
+            subtitle
+            content {
+              html
+              markdown
+              text
+            }
+          }
+        }`,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to fetch article:", response.statusText);
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.data || !data.data.articles) {
+      console.error("Invalid response format:", data);
+      throw new Error("Invalid response format");
+    }
+
+    const articles = data.data.articles;
+
+    if (articles.length === 0) {
+      console.error("No article found with the provided slug:", slug);
+      throw new Error("Article not found");
+    }
+
+    return articles[0];
+  } catch (error) {
+    console.error("Fetch error:", error);
+
+    if (process.env.NODE_ENV === "production") {
+      return null;
+    }
+
+    throw error;
+  }
+};
+
+const apiFunctions = { fetchPosts, fetchArticles, fetchArticleBySlug };
 
 export default apiFunctions;
