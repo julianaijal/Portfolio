@@ -1,5 +1,18 @@
 // to-do: yes 3x the same function i know
 const api = `https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/${process.env.HYGRAPH_API_KEY}/master`;
+
+const fetchGraphQL = async (query:any) =>{
+  try {
+    const resp = await fetch(api, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    })
+  } catch (error) {
+    
+  }
+}
+
 const fetchPosts = async () => {
   try {
     const response = await fetch(api, {
