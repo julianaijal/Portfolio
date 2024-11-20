@@ -12,6 +12,12 @@ const fetchGraphQL = async (query: any) => {
       console.error("Failed to fetch article(s):", resp.statusText);
       throw new Error(`Network response was not ok: ${resp.statusText}`);
     }
+    const data = await resp.json();
+
+    if (!data.data) {
+      console.error("Invalid response format:", data);
+      throw new Error("Invalid response format");
+    }
   } catch (error) {
     console.error("Fetch error:", error);
     if (process.env.NODE_ENV === "production") {
