@@ -6,8 +6,9 @@ import apiFunctions from "../utils/api";
 import { IArticle } from "./_interfaces/interfaces";
 
 const Layout = async () => {
-  const { data } = await apiFunctions.fetchArticlesTest();
-  console.log(data);
+  const { data } = await apiFunctions.fetchPosts();
+  const blurp = await apiFunctions.fetchArticlesTest()
+  console.log(blurp.data, "spiderman");
 
   const articlesHygraphData: IArticle[] = data?.externalPostsPluralized?.map(
     ({ title, url, symbol }: IArticle) => ({ title, url, symbol })
