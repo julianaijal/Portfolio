@@ -8,6 +8,10 @@ const fetchGraphQL = async (query: any) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
     });
+    if (!resp.ok) {
+      console.error("Failed to fetch article(s):", resp.statusText);
+      throw new Error(`Network response was not ok: ${resp.statusText}`);
+    }
   } catch (error) {
     console.error("Fetch error:", error);
     if (process.env.NODE_ENV === "production") {
