@@ -27,6 +27,22 @@ const fetchGraphQL = async (query: any) => {
   }
 };
 
+const fetchArticlesTest = async () => {
+  const query = `{
+          articles {
+            id
+            title
+            subtitle
+            content {
+              html
+              markdown
+              text  
+            }
+          }
+        }`;
+    const blob = await fetchGraphQL(query);
+    return blob;
+};
 const fetchPosts = async () => {
   try {
     const response = await fetch(api, {
@@ -168,6 +184,6 @@ const fetchArticleBySlug = async (slug: string) => {
   }
 };
 
-const apiFunctions = { fetchPosts, fetchArticles, fetchArticleBySlug };
+const apiFunctions = { fetchPosts, fetchArticles, fetchArticleBySlug, fetchArticlesTest };
 
 export default apiFunctions;
