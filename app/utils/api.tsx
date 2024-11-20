@@ -1,17 +1,21 @@
 // to-do: yes 3x the same function i know
 const api = `https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/${process.env.HYGRAPH_API_KEY}/master`;
 
-const fetchGraphQL = async (query:any) =>{
+const fetchGraphQL = async (query: any) => {
   try {
     const resp = await fetch(api, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
-    })
+    });
   } catch (error) {
-    
+    console.error("Fetch error:", error);
+    if (process.env.NODE_ENV === "production") {
+      return null;
+    }
+    throw error;
   }
-}
+};
 
 const fetchPosts = async () => {
   try {
@@ -102,7 +106,7 @@ const fetchArticles = async () => {
   }
 };
 
-const fetchArticleBySlug = async (slug:string) => {  
+const fetchArticleBySlug = async (slug: string) => {
   try {
     const response = await fetch(api, {
       method: "POST",
@@ -124,7 +128,7 @@ const fetchArticleBySlug = async (slug:string) => {
     });
 
     if (!response.ok) {
-      console.error("Failed to fetch article:", response.statusText);
+      console.error("Failed to fetch article(s):", response.statusText);
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
 
