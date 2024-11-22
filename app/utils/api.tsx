@@ -34,14 +34,8 @@ const fetchGraphQL = async (query: string) => {
 const fetchArticles = async () => {
   const query = `{
     articles {
-      id
       title
-      subtitle
-      content {
-        html
-        markdown
-        text  
-      }
+      slug
     }
   }`;
   const data = await fetchGraphQL(query);

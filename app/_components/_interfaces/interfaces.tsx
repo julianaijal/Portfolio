@@ -1,5 +1,6 @@
 export interface IArticle {
   title: string;
+  slug: string;
   url: string;
   image?: string | null;
   cta?: string;
@@ -14,6 +15,7 @@ export interface IShowcaseEntry {
 
 export interface IArticles {
   articles: IArticle[];
+  articlesnew?:IArticle[];
 }
 
 export interface IShowcase {

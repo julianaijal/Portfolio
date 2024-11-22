@@ -6,18 +6,24 @@ import apiFunctions from "../utils/api";
 import { IArticle } from "./_interfaces/interfaces";
 
 const Layout = async () => {
-  const { data } = await apiFunctions.fetchPosts();
+  const { data: postsData } = await apiFunctions.fetchPosts();
+  const { data: articlesData } = await apiFunctions.fetchArticles();
 
-  const articlesHygraphData: IArticle[] = data?.externalPostsPluralized?.map(
+  const articlesHygraphData: IArticle[] = postsData?.externalPostsPluralized?.map(
     ({ title, url, symbol }: IArticle) => ({ title, url, symbol })
   ) ?? [];
 
+  const mappedArticles: IArticle[] = articlesData?.articles?.map(
+    ({ title, slug, }: IArticle) => ({ title, slug, })
+  ) ?? [];
+
+  console.log(mappedArticles);
   return (
     <>
       <NavBar />
       <main className={styles.main}>
         <Hero />
-        <ArticleBlock articles={articlesHygraphData} />
+        <ArticleBlock articles={articlesHygraphData} articlesnew={mappedArticles}/>
       </main>
       <Footer />
     </>
