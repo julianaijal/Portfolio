@@ -7,14 +7,13 @@ import { FC } from "react";
 const ArticleBlock: FC<IArticles> = ({ articles, articlesnew }) => {
   const { width } = useWindowDimensions();
   const breakpoint = 768;
-  console.log(articlesnew, "spiderman");
 
   return (
     <>
       {width! < breakpoint ? (
-        <ArticleSlider articles={articles} />
+        <ArticleSlider articles={articles} articlesnew={articlesnew}/>
       ) : (
-        <ArticleList articles={articles} />
+        <ArticleList articles={articles} articlesnew={articlesnew}/>
       )}
     </>
   );

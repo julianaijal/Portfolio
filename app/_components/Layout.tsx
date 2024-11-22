@@ -17,7 +17,7 @@ const Layout = async () => {
     ({ title, slug, }: IArticle) => ({ title, slug, })
   ) ?? [];
 
-  console.log(mappedArticles);
+
   return (
     <>
       <NavBar />

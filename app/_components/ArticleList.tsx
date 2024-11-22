@@ -2,7 +2,8 @@ import styles from '../styles/ArticleList.module.scss';
 import { IArticles } from './_interfaces/interfaces';
 import ArticleListEntry from './ArticleListEntry';
 
-const ArticleList: React.FC<IArticles> = ({ articles }) => {
+const ArticleList: React.FC<IArticles> = ({ articles, articlesnew }) => {
+  console.log(articlesnew, 'list')
   return (
     <section className={styles.ArticleList}>
       <div className={styles.ArticleListCta}>
