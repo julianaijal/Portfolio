@@ -10,13 +10,14 @@ interface PageProps {
 
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
-  const data = await apiFunctions.fetchArticleBySlug(slug);
-  const content = data.content.html;
-  const window = new JSDOM("").window;
-  const domPurify = DOMPurify(window);
-  const sanitizedHtml = domPurify.sanitize(content);
+
 
   try {
+    const data = await apiFunctions.fetchArticleBySlug(slug);
+    const content = data.content.html;
+    const window = new JSDOM("").window;
+    const domPurify = DOMPurify(window);
+    const sanitizedHtml = domPurify.sanitize(content);
     return (
       <>
         <NavBar />
