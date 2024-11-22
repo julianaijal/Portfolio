@@ -5,11 +5,15 @@ import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{
+    slug: string;
+    title: string;
+  }>;
 }
 
 const Page = async ({ params }: PageProps) => {
-  const { slug } = params;
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
 
   try {
     const data = await apiFunctions.fetchArticleBySlug(slug);
