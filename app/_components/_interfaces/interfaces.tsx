@@ -21,3 +21,10 @@ export interface IArticles {
 export interface IShowcase {
   entries: IShowcaseEntry[];
 }
+
+export interface IArticleDynamic {
+  params: Promise<{
+    slug: string;
+    title: string;
+  }>;
+}

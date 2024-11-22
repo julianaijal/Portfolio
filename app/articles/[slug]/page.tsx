@@ -3,15 +3,10 @@ import styles from "../../styles/Article.module.scss";
 import apiFunctions from "../../utils/api";
 import DOMPurify from "dompurify";
 import { JSDOM } from "jsdom";
+import { IArticleDynamic } from "../../_components/_interfaces/interfaces";
 
-interface PageProps {
-  params: Promise<{
-    slug: string;
-    title: string;
-  }>;
-}
 
-const Page = async ({ params }: PageProps) => {
+const Page = async ({ params }: IArticleDynamic) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
