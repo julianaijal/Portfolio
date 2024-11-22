@@ -9,8 +9,7 @@ interface PageProps {
 }
 
 const Page = async ({ params }: PageProps) => {
-  const { slug } = await params;
-
+  const { slug } = params;
 
   try {
     const data = await apiFunctions.fetchArticleBySlug(slug);
