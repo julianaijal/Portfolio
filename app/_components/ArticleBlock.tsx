@@ -10,10 +10,10 @@ const ArticleBlock: FC<IArticles> = ({ articles, articlesnew }) => {
 
   return (
     <>
-      {width! < breakpoint ? (
-        <ArticleSlider articles={articles} articlesnew={articlesnew}/>
+      {(width ?? Infinity) < breakpoint ? (
+        <ArticleSlider articles={articles} articlesnew={articlesnew} />
       ) : (
-        <ArticleList articles={articles} articlesnew={articlesnew}/>
+        <ArticleList articles={articles} articlesnew={articlesnew} />
       )}
     </>
   );
