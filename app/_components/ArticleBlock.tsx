@@ -4,16 +4,16 @@ import { ArticleList, ArticleSlider } from "./";
 import { IArticles } from "./_interfaces/interfaces";
 import { FC } from "react";
 
-const ArticleBlock: FC<IArticles> = ({ articles }) => {
+const ArticleBlock: FC<IArticles> = ({ articles, articlesnew }) => {
   const { width } = useWindowDimensions();
   const breakpoint = 768;
 
   return (
     <>
-      {width! < breakpoint ? (
-        <ArticleSlider articles={articles} />
+      {(width ?? Infinity) < breakpoint ? (
+        <ArticleSlider articles={articles} articlesnew={articlesnew} />
       ) : (
-        <ArticleList articles={articles} />
+        <ArticleList articles={articles} articlesnew={articlesnew} />
       )}
     </>
   );

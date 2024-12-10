@@ -3,7 +3,9 @@ import { IArticles } from "./_interfaces/interfaces";
 import { FC } from "react";
 import ArticleSliderEntry from "./ArticleSliderEntry";
 
-const ArticleSlider: FC<IArticles> = ({ articles }) => {
+const ArticleSlider: FC<IArticles> = ({ articles, articlesnew }) => {
+  // this won't log because of usedimensionshook
+  console.log(articlesnew, 'slider')
   return (
     <section className={styles.ArticleSlider}>
       <div className={styles.ArticleSliderCta}>
